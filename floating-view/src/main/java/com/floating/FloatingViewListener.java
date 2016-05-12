@@ -1,4 +1,4 @@
-package com.floatingview;
+package com.floating;
 
 /**
  * Created by amitshekhar on 12/05/16.
