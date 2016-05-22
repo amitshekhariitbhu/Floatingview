@@ -7,35 +7,32 @@ def gitUrl = 'https://github.com/amitshekhariitbhu/Floatingview.git'
 group = "com.amitshekhar.widget"
 version = '0.0.0'
 
-install
-{
-    repositories.mavenInstaller
-    {
-        pom.project
-        {
+install {
+    repositories.mavenInstaller {
+        pom.project {
             packaging 'aar'
 
             name 'FloatingView'
             description 'A wrapper for Facebook Messenger ChatHead View on Android'
-            version '0.3.0'
 
             url siteUrl
 
-            licenses { license
-            {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            } }
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
 
-            developers { developer
-            {
-                id 'amitshekhariitbhu'
-                name 'Amit Shekhar'
-                email 'amit.shekhar.iitbhu@gmail.com'
-            } }
+            developers {
+                developer {
+                    id 'amitshekhariitbhu'
+                    name 'Amit Shekhar'
+                    email 'amit.shekhar.iitbhu@gmail.com'
+                }
+            }
 
-            scm
-            {
+            scm {
                 connection gitUrl
                 developerConnection gitUrl
                 url siteUrl
@@ -64,37 +61,24 @@ artifacts {
     archives sourcesJar
 }
 
-if (project.rootProject.file("local.properties").exists())
-{
+if (project.rootProject.file("local.properties").exists()) {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-    bintray
-    {
+    bintray {
         user = properties.getProperty("bintray.user")
         key = properties.getProperty("bintray.apikey")
 
         configurations = ['archives']
         dryRun = false
 
-        pkg
-        {
+        pkg {
             repo = "maven"
             name = "FloatingView"
             websiteUrl = siteUrl
             vcsUrl = gitUrl
             licenses = ["Apache-2.0"]
             publish = true
-        }
-        pkg.version
-        {
-            name = "0.0.0"
-            vcsTag = '0.0.0'
-        }
-        pkg.version.gpg
-        {
-            sign = true
-            passphrase = properties.getProperty("bintray.gpg.password")
         }
     }
 }
